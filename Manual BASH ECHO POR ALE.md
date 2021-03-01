@@ -182,26 +182,9 @@ Encapsular el comando dentro de la estructura `$(comando)` :
 /Users/Desktop
 ```
 
+## Comando echo
 
-
-Ahora que ya sabemos que son las variables , vamos a operar con ellas 
-
- 
-
-```
-#!/bin/bash
-# Script para aprender
-# Autor
-# Fecha
-
-variable=2
-otraVariable=6
-resultado=$((variable + otraVariable))
-```
-
-
-
-## Imprimir en pantalla
+Veamos un poco mas en profundidad el comando echo.
 
 Su sintaxis de uso es:
 
@@ -238,92 +221,27 @@ Otra forma de hacerlo es con las comillas simples (`' '`) que no toman en cuenta
 echo 'probando que $variable no la tome como caracter especial'
 ```
 
-
-
-## Parametros
-
-###### Descripcion de los parametros
-
-`script.sh parametro1 parametro2 parametro3`
-
-- `$0` representa el nombre del script
-
-- `$1` – `$9` los primeros nueve argumentos que se pasan a un script en Bash
-
-- `$n` representa el decimo argumento
-
-- `${n}`  Para argumentos superiores a 10 (donde `n` es el numero del argumento)
-
-  
-
-###### Otros parametros 
-
-
-
-| Comando | Resultado del comando                                        |
-| ------- | ------------------------------------------------------------ |
-| $#      | Numeros de parametros pasados al script (sin contar el nombre del script). |
-| $?      | Un valor numerico que te identifica si lo ultimo que se ejecuto fue bien o fue mal (si es !=0 indica error, si es == 0 indica que fue correcto).  `IMPORTANTE!!!` |
-| $*      | Cadena de parametros entera (con el nombre del script).      |
-| $@      | Array de parametros(sin el nombre del script)                |
-
-
-
-ACA PONGO EJEMPLOS!!!
-
-
-
-
-
-## Prompt
-
-[^prompt]: Linea vertical que titila esperando que el usuario tecle algo.
-
-Permite guardar lo que introduce el usuario por teclado como variable.
-
-Se activa al pulsar el enter.
-
-Veamos un ejemplo
-
-```bash
-echo "Introduce un nombre"
-read nombre
-echo "TU nombre es $nombre"
-```
-
-Se le dice al usuario que "introdusca un nombre" gracias al comando echo y seguido aparece el prompt en la pantalla esperando que el usuario tecle algo para que al presionar enter , se almacene dentro de la variable `$nombre`  lo que el usuario escribio.
-
-Luego se muestra por pantalla gracias al echo "tu nombre es `$nombre`" donde `$nombre` es lo que escribio el usuario.
-
-##### Algunos argumentos del read
-
-Son los argumentos que se le agregan al comando para aumentar su funcionalidad, se puede escribir varios uno al lado del otro.
-
--p
-
-Usado para que el prompt aparesca a continuacion del echo y no abajo
-
-```bash
-read -p "Introduce tu apellido: " apellido    
-echo "Tu apellido es $apellido"
-```
-
--s
-
-Usado para ocultar lo que el usuario escribe
-
-```bash
-read -s "Introduce tu contraseña" contrasenia   #Sirve para introducir contraseñas
-echo "Tu contraseña es $contrasenia"
-```
-
-
-
 ## Operaciones
 
+Ahora que ya sabemos que son las variables , vamos a operar con ellas 
 
+ 
 
-###### Numeros enteros
+```bash
+#!/bin/bash
+# Script para aprender
+# Autor
+# Fecha
+
+variable=2
+otraVariable=6
+resultado=$((variable + otraVariable))
+echo "el resultado de la suma entre $variable y $otraVariable es $resultado"
+```
+
+Aqui estamos almacenando en la variable `resultado` , el resultado de la suma entre `variale` y `otraVariable`
+
+Hay muchas formas de hacer operaciones con numeros enteros, algunas son:
 
 ​    `num=$((num1 + num2))`    # utiliza esto
 
@@ -333,10 +251,14 @@ echo "Tu contraseña es $contrasenia"
 
 ​    `num=$(expr $1 + $2)`     # forma vieja
 
+Donde recomiendo utilizar la primera opcion , que es la estandar.
+
+Veamos las diferentes Operaciones que podemos hacer con bash y como hacerlas
+
 - \+ - : suma, resta
 
 ```bash
-  ~$ $num=10
+  ~$ num=10
   ~$ echo $((num + 2))
 ```
 
@@ -370,6 +292,160 @@ echo "Tu contraseña es $contrasenia"
 
 
 
+## Parametros
+
+Los comandos que ejecutamos pueden recibir opciones o parametros como por ejemplo el comando `ls -l /home` donde **ls** es el comando , **-l** la opcion y **/home** el parametro
+
+`script.sh parametro1 parametro2 parametro3`
+
+- `$0` representa el nombre del script
+
+- `$1` – `$9` los primeros nueve parametros que se pasan a un script en Bash
+
+- `$n` representa el decimo argumento
+
+- `${n}`  Para argumentos superiores a 10 (donde `n` es el numero del argumento)
+
+  
+
+Ahora veamos como funciona
+
+Crea un archivo y dale permisos de ejecucion, dentro escribe
+
+```bash
+#!/bin/bash
+echo "\$0 contiene $0"
+echo "\$1 contiene $1"
+echo "\$2 contiene $3
+```
+
+Lo que hace este script es que al pasarle parametros , nos mostrara con un echo los 3 primeros.
+
+Si un parametro esta vacio , se mostrara como vacio( ver $3)
+
+```bash
+./script.sh hola como 
+echo "\$0 contiene $0"
+# $0 contiene hola
+echo "\$1 contiene $1"
+# $1 contiene como
+echo "\$2 contiene $3"
+# $2 contiene 
+echo "el nombre del script es $0"
+# el nombre del script es script.sh
+```
+
+Tambien tenemos variables especiales
+
+| Comando | Resultado del comando                                        |
+| ------- | ------------------------------------------------------------ |
+| $#      | Numeros de parametros pasados al script (sin contar el nombre del script). |
+| $?      | Un valor numerico que te identifica si lo ultimo que se ejecuto fue bien o fue mal (si es !=0 indica error, si es == 0 indica que fue correcto).  `IMPORTANTE!!!` |
+| $*      | Cadena de parametros entera (sin el nombre del script).      |
+| $@      | Array de parametros(sin el nombre del script)                |
+
+Veamos $#, , esta variable indica el numero de parametros que se le paso al script sin incluir al propio nombre del script ($0)
+
+```bash
+./script.sh hola como estas
+echo "el numero de parametros es $#"
+# el numero de parametros es 3
+```
+
+$* y $@ devuelven los parametros con este orden
+
+```bash
+.script.sh hola como estas
+echo $*
+# hola como estas
+echo $@
+# hola como estas
+```
+
+La diferencia es que $* nos muestra el resultado como string y $@ nos los muestra como un array , que lo veremos mas adelante.
+
+Nuestro script se tiene que comportar de una forma u otra segun los parametros que pase el usuario , o segun el valor de una variable, ahora veremos esto.
+
+El comando que permite evaluar condiciones es `test` , el valor de retorno de test si es VERDADERA(TRUE) es 0 y si es FALSA(FALSE) es 1, lo que evaluamos recibe el nombre de expresion. Ahora veremos un ejemplo.
+
+```bash
+test 20 -eq 20
+echo $?
+ #0
+```
+
+Aqui estamos evaluando que 20 sea igual que 20 ,que es la expresion , gracias a la condicional `-eq` , que veremos mas adelante , donde $? devolvera 0 lo que significa que es TRUE
+
+Por ende si probamos test 20 -eq 21 , $? dara 1 , ya que es FALSE por que 20 no es igual a 21.
+
+Obviamente, podemos usar las expresiones con variables.
+
+```bash
+a=20
+b=20
+test $a -eq $b
+echo $?
+ #0
+```
+
+Aunque la forma mas comun de evaluar las expresiones no es con el comando test si no poniendo la expresion entre corchetes []
+
+```bash
+[ $a -eq $b ] # IMPORTANTE, TENER EN CUENTA LOS ESPACISO
+echo $?
+ #0
+```
+
+
+
+## Prompt
+
+[^prompt]: Linea vertical que titila esperando que el usuario tecle algo.
+
+Muchas veces , nesesitamos que el usario nos pase datos , que almacenaremos como variables para interactuar con el script. Esto lo hacemos con read
+
+Read permite guardar lo que introduce el usuario por teclado como variable.
+
+Se activa al pulsar el enter.
+
+Veamos un ejemplo
+
+```bash
+echo "Introduce un nombre"
+read nombre
+echo "TU nombre es $nombre"
+```
+
+Se le dice al usuario que "introdusca un nombre" gracias al comando echo y seguido aparece el prompt en la pantalla esperando que el usuario tecle algo para que al presionar enter , se almacene dentro de la variable `$nombre`  lo que el usuario escribio.
+
+Luego se muestra por pantalla gracias al echo "tu nombre es `$nombre`" donde `$nombre` es lo que escribio el usuario.
+
+
+
+
+
+**Algunos argumentos del read**
+
+Son los argumentos que se le agregan al comando para aumentar su funcionalidad, se puede escribir varios uno al lado del otro.
+
+**-p**
+
+Usado para que el prompt aparesca a continuacion del echo y no abajo
+
+```bash
+read -p "Introduce tu apellido: " apellido    
+echo "Tu apellido es $apellido"
+```
+
+**-s**
+
+Usado para ocultar lo que el usuario escribe
+
+```bash
+read -s "Introduce tu contraseña" contrasenia   #Sirve para introducir contraseñas
+echo "Tu contraseña es $contrasenia"
+```
+
 
 
 ## If
@@ -377,52 +453,64 @@ echo "Tu contraseña es $contrasenia"
 La sintaxis básica de un condicional es la siguiente
 
 ```bash
-	if [[ CONDICIÓN ]];
-	then
-	  COMANDO 1 si se cumple la condición
-	fi
+If [Expresion]; Then
+
+#Realiza expresión si es verdadera
+
+fi  #Cierra la estructura
 ```
 
-También se puede especificar qué hacer si la condición no se cumple:
+Donde estamos diciendo :
 
-```bash
-	if [[ CONDICIÓN ]];
-	then
-	  COMANDO 1 si se cumple la condición
-	else
-	  COMANDO 2 si no se cumple la condición
-	fi
+```
+Si(if) [lo que esta dentro de esta expresion] entonces(then) 
+
+ hace esto
+ 
+fi #Cierro el if
 ```
 
-O tambien concatenando IFs
+
 
 ```bash
-if [[ $VAR1 operador $VAR2 ]]; then
-	#hace algo
-elif [[ $VAR1 operador $VAR2 ]]; then
-	#hace otra si no se cumple el primer if
-else
-  	#hace otra cosa si no se cumple ninguna de las condiciones anteriores
+If [Expresion]; Then
+
+  #Realiza expresión si es verdadera
+
+Else
+
+  #Realiza expresión si es falsa
+
 fi
+
+
 ```
 
-[^$VAR]: Representa una variable
-
-En pseudocodigo : 
-
-> ```bash
-> si [[ condicion ]]; entonces 
-> 	#hace algo el programa
-> si no anduvo lo de arriba [[ condicion ]]; entonces 
-> 	#hace algo el programa
-> si no entro en ninguno de los if de arriba
-> 	#hace algo el programa
-> fin
-> ```
 
 
+**Cuando hay más de dos opciones utilizamos ELIF**
 
-#### Condicionales con números
+```bash
+If [Expresion]; Then
+
+  #Realiza expresión si es verdadera
+
+elif  [Expresion]; Then
+
+  #Realiza expresión si es verdadera
+
+elif  [Expresion]; Then
+
+  #Realiza expresión si es verdadera
+
+else
+
+  #Realiza expresión si es falsa
+
+fi 
+```
+
+Condicionales con números
 
 Al comparar números podemos realizar las siguientes operaciones:
 
