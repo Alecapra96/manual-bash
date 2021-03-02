@@ -462,7 +462,7 @@ fi  #Cierra la estructura
 
 Donde estamos diciendo :
 
-```
+```bash
 Si(if) [lo que esta dentro de esta expresion] entonces(then) 
 
  hace esto
@@ -596,7 +596,7 @@ Por ejemplo, podemos hacer un script que nos informe sobre el contenido de un di
 
 ###### Ejemplo
 
-Estamos en la red de nuestra empresa, y deseamos saber si X ordenador está conectado a la red. Para ello hacemos un [script](https://blog.desdelinux.net/bash-como-hacer-un-script-ejecutable/) que hará [ping](http://mx.answers.yahoo.com/question/index?qid=20100417180043AAZG1aR) hacia ese ordenador, y si está en red (o sea, si devuelve el [ping](http://mx.answers.yahoo.com/question/index?qid=20100417180043AAZG1aR)) nos dirá que SÍ, está en red, de lo contrario (o sea, que no esté en red) nos dirá que NO está en red.
+Estamos en la red de nuestra empresa, y deseamos saber si X ordenador está conectado a la red. Para ello hacemos un  script que hara ping hacia ese ordenador, y si está en red (devuelve ping )nos dirá que SÍ, está en red, de lo contrario (o sea, que no esté en red) nos dirá que NO está en red.
 
 ```bash
 ping -c 1 DIRECCION-IP
@@ -609,7 +609,7 @@ fi
 
 **ping** es el comando que usaremos, y nos dirá si esa PC está en red. Para decirle qué PC queremos comprobar si está o no en red, debemos cambiar **DIRECCION-IP** por obviamente, la dirección IP de la PC que deseamos comprobar.
 
-Como ven, puse «**-c 1**«, lo cual nos es necesario. Cuando hacemos ping a un ordenador, esta acción no se detiene (el ping) hasta que nosotros mismos presionemos **[Ctrl]+[C]**, por lo que poniendo «**-c 1**» le indicamos que haga solo una verificación (solo un intento de ping) y ningún otro, esto hará que se detenga al instante, o sea… comprobará si el ordenador está en red solo una vez.
+Como ven, puse `-c 1` lo cual nos es necesario. Cuando hacemos ping a un ordenador, esta acción no se detiene (el ping) hasta que nosotros mismos presionemos **[Ctrl]+[C]**, por lo que poniendo «**-c 1**» le indicamos que haga solo una verificación (solo un intento de ping) y ningún otro, esto hará que se detenga al instante, o sea… comprobará si el ordenador está en red solo una vez.
 
 
 
@@ -663,7 +663,7 @@ En el ejemplo si el directorio /tmp/existe no existe, entonces se ejecuta el com
 
 La sintaxis es la siguiente:
 
-```
+```bash
 case “$VARIABLE” in
 
              opción1)
