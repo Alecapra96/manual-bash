@@ -1,4 +1,4 @@
-# BASH SCRIPT
+# Introduccion a BASH SCRIPT
 
 Al trabajar con la pc mas de una vez has tenido que hacer tareas repetitivas , que es algo realmente tedioso , pero ademas te puedes equivocar,  si bien , mientras mas repites una tarea mas destreza adquiris, las posibilidades de equivocarte aumentan , por lo que automatizar una tarea repetitiva anula la posibilidad de error y ademas vuelve menos tedioso el trabajo.
 
@@ -510,7 +510,7 @@ else
 fi 
 ```
 
-Condicionales con números
+### Condicionales
 
 Al comparar números podemos realizar las siguientes operaciones:
 
@@ -535,8 +535,6 @@ Al comparar números podemos realizar las siguientes operaciones:
 	fi
 ```
 
-#### Condicionales con cadenas de texto
-
 Comparando cadenas de texto:
 
 | operador | significado                                                 |
@@ -560,7 +558,7 @@ Comparando cadenas de texto:
 	fi
 ```
 
-#### Condicionales con archivos
+Condicionales con archivos
 
 | operador | Devuelve *true* si                                           |
 | -------- | ------------------------------------------------------------ |
@@ -594,8 +592,6 @@ Por ejemplo, podemos hacer un script que nos informe sobre el contenido de un di
 	done
 ```
 
-###### Ejemplo
-
 Estamos en la red de nuestra empresa, y deseamos saber si X ordenador está conectado a la red. Para ello hacemos un  script que hara ping hacia ese ordenador, y si está en red (devuelve ping )nos dirá que SÍ, está en red, de lo contrario (o sea, que no esté en red) nos dirá que NO está en red.
 
 ```bash
@@ -611,9 +607,7 @@ fi
 
 Como ven, puse `-c 1` lo cual nos es necesario. Cuando hacemos ping a un ordenador, esta acción no se detiene (el ping) hasta que nosotros mismos presionemos **[Ctrl]+[C]**, por lo que poniendo «**-c 1**» le indicamos que haga solo una verificación (solo un intento de ping) y ningún otro, esto hará que se detenga al instante, o sea… comprobará si el ordenador está en red solo una vez.
 
-
-
-#### AND Y OR
+### && y ||
 
 ```bash
 if [[ $VAR1 -ge $VAR2 ]] CONDICION [[ $VAR1 -ge $VAR3 ]] then
@@ -683,10 +677,6 @@ esac
 si la variable **expresion** se encuentra en algunos de los casos propuestos ejecuta los comandos correspondientes.
 
 
-
-
-
-#### Elementos de la sentencia case-esac
 
 Comenzamos con `case` *variable* `in`
 
@@ -782,38 +772,13 @@ veamos como funciona en terminal:
 ```bash
 -$  bash case_esac.sh
 Escribe tu nombre sin usar mayusculas
-antonio
+alejandro
 tu nombre empieza con a
 ```
 
-# Ejercicios 
-
-`Primera parte` 
-
-​	1.- Realiza un guión llamado nuevo que solicite un número y, si es mayor que 200, muestre el mensaje: <<mayor que 	200>>.
-
-​	2.- Realiza un guión llamado cuestion que muestre en pantalla la pregunta: <<¿Quién descubrió América?>> y, según 	la respuesta, muestre el mensaje <<es correcto>> o <<no es correcto>>.
-
-​	3.- Crea un guión llamado pares que solicite un número y diga si es par o impar.
-
-​	4.- Crea un guión llamado loteria en el que el usuario debe de adivinar un número que el programador debe de        		escribir previamente. Si acierta el número oculto, el programa debe de mostrar un mensaje de felicitación, en caso 		de    fallar debe de seguir intentándolo hasta que no introduzca ningún caracter, entonces finalizará la tarea.
-
-`Segunda parte`
-
-1. Haz un script que cree 40 archivos *.txt* en una carpeta de tu escritorio (usa *touch* para crearlos)
-2. Haz un script que comprima con *gzip* sólo los archivos 25 y 29.
-3. Escribe un script que cambie la extensión de los ficheros que contengan un 3 en su nombre de *.txt* a *.md*.
-4. Crea un script que copie todos los archivos (no directorios) */etc* a una carpeta de tu escritorio.
-5. Prepara un script que cuenta el número de directorios y archivos que hay en */etc*
-6. Haz un script que devuelva el número de archivos que has guardado
 
 
-
-
-
-## FOR
-
-### Bucles (*for*)
+## Bucles (for)
 
 La sintaxis general de los bucles es la siguiente:
 
@@ -861,3 +826,255 @@ Un ejemplo simple de *for* sería:
 	  echo Este es el número: $numero
 	done
 ```
+
+## Ejercicios
+
+
+
+`Primera parte` 
+
+​	1.- Realiza un guión llamado nuevo que solicite un número y, si es mayor que 200, muestre el mensaje: <<mayor que 	200>>.
+
+​	2.- Realiza un guión llamado cuestion que muestre en pantalla la pregunta: <<¿Quién descubrió América?>> y, según 	la respuesta, muestre el mensaje <<es correcto>> o <<no es correcto>>.
+
+​	3.- Crea un guión llamado pares que solicite un número y diga si es par o impar.
+
+​	4.- Crea un guión llamado loteria en el que el usuario debe de adivinar un número que el programador debe de        		escribir previamente. Si acierta el número oculto, el programa debe de mostrar un mensaje de felicitación, en caso 		de    fallar debe de seguir intentándolo hasta que no introduzca ningún caracter, entonces finalizará la tarea.
+
+`Segunda parte`
+
+1. Haz un script que cree 40 archivos *.txt* en una carpeta de tu escritorio (usa *touch* para crearlos)
+
+2. Haz un script que comprima con *gzip* sólo los archivos 25 y 29.
+
+3. Escribe un script que cambie la extensión de los ficheros que contengan un 3 en su nombre de *.txt* a *.md*.
+
+4. Crea un script que copie todos los archivos (no directorios) */etc* a una carpeta de tu escritorio.
+
+5. Prepara un script que cuenta el número de directorios y archivos que hay en */etc*
+
+6. Haz un script que devuelva el número de archivos que has guardado
+
+    
+
+# DUEÑOS
+
+# PERMISOS
+
+Como hemos visto anteriormente ,todos los archivos de linux tienen dueño , tambien un grupo dueño y ademas estos tienen permisos para leer,(`r`ead) escribir(`w`rite) o ejecutar(e`x`ecute) estos archivos .
+
+Al utilizar el comando `ls -l` para listar los archivos de un directorio , ¿viste esa combinacion de de `r,w,x` y `-` ?, bueno esos son los permisos.
+
+En linux todo archivo tiene tres niveles de permisos , los que se aplican al dueño del archivo , al grupo dueño del archivo y a los demas usuarios.
+
+Por ejemplo un archivo , o directorio  el dueño puede tener permiso para leer , escribir y ejecturalo (rwx) , el dueño grupo para leerlo(r--) y el resto de los usuarios ningun permiso (---)
+
+Una buena asignacion de permisos con una buena politica lleva a obtener un sistema multiusuario seguro.
+
+Linux, al ser un sistema diseñado fundamentalmente para trabajo en red, la seguridad de la información que almacenemos en nuestros equipos (y no se diga en los servidores) es fundamental, ya que muchos usuarios tendrán o podrán tener acceso a parte de los recursos de software (tanto aplicaciones como información) y hardware que están gestionados en estos ordenadores.
+
+Podemos ver los permisos cuando listamos un directorio con `ls -l`:
+
+```scala
+$> ls -l
+-rwxrwxr--  1 cisco ventas    9090 sep  9 14:10 presentacion
+-rw-rw-r--  1 cisco cisco    26023 jun  7 16:36 reporte1
+drwxr-xr-x  2 cisco cisco     4096 ago 27 11:41 documentos
+```
+
+ Veamos los permisos de el archivo `presentacion`que es la primera linea.
+
+La primera columna (-rwxrwxr--) es el tipo de archivo y sus permisos, 
+
+La segunda columna (1) es el número de enlaces al archivo.
+
+La tercera columna (cisco) es el propietario del archivo.
+
+La cuarta columna (ventas) es el grupo al que pertence al archivo.
+
+Las siguientes son el tamaño, la fecha y hora de última modificación y por último el nombre delarchivo o directorio.
+
+![image-20210302215133429](/home/cisco/.config/Typora/typora-user-images/image-20210302215133429.png)
+
+Veamos en profundidad la primera columna:
+
+Cada archivo de linux esta identificado por 10 caracteres que se le denomina mascara.
+
+De estos 10 caracteres , el primero representa el tipo de archivo, los siguientes 9 , de izquierda a derecha y en bloques de 3 representan los permisos del dueño, grupo dueño y los otros en ese orden.
+
+El primer carácter de los archivos puede ser el siguiente:
+
+| **Permiso** | **Identifica**                                               |
+| ----------- | ------------------------------------------------------------ |
+| –           | Archivo                                                      |
+| d           | Directorio                                                   |
+| b           | Archivo de bloques especiales (Archivos especiales de dispositivo) |
+| c           | Archivo de caracteres especiales (Dispositivo tty, impresora…) |
+| l           | Archivo de vinculo o enlace (soft/symbolic link)             |
+| p           | Archivo especial de cauce (pipe o tubería)                   |
+
+Donde lo mas normal es el `-` para representar a un archivo comun o `d` para representar a un directorio
+
+Los siguientes caracteres son los permisos , recuerda, se tratan en bloques de 3 de derecha a izquierda , donde el primer bloque representa al dueño , el siguiente al grupo dueño y el ultimo a los otros usuarios del sistema.
+
+| **Permiso** | **Identifica**       |
+| ----------- | -------------------- |
+| –           | Sin permiso          |
+| r           | Permiso de lectura   |
+| w           | Permiso de escritura |
+| x           | Permiso de ejecución |
+
+Volvamos a nuestro **ls -l**
+
+```scala
+$> ls -l
+-rwxrwxr--  1 cisco ventas    9090 sep  9 14:10 presentacion
+-rw-rw-r--  1 cisco cisco    26023 jun  7 16:36 reporte1
+drwxr-xr-x  2 cisco cisco     4096 ago 27 11:41 documentos
+```
+
+El primer archivo listado podemos ver claramente que es un archivo gracias a que el primer caracter es un `-` (`-`rwxrwxr--)en cambio documentos , nos damos cuenta que es un directorio por que comienza con una `d`(`d`rwxr-xr-x ).
+
+Desglocemos el archivo presentacion.
+
+```scala
+-rwxrwxr--  1 cisco ventas    9090 sep  9 14:10 presentacion
+```
+
+Ya sabemos que es un archivo por el `-` en el primer caracter, los siguientes 3 caracteres representan los permisos del dueño -`rwx`rwxr-- donde vemos que el dueño tiene los permisos rwx que significa ,read(lectura),write(escritura) y execute(ejecucion) (es importante que nos familiarizemos con los nombres en ingles.)
+
+El siguiente bloque de 3 -rwx`rwx`r-- representa los permisos del grupo dueño , que tambien son rwx.
+
+Y el ultimo bloque -rwxrwx`r--` representa los permisos para el resto de usuarios donde vemos que tiene r--, lo que significa que puede read(leer), pero donde deberia estar w y x tiene un - lo que significa que no los tiene.
+
+En resumen al archivo presentacion el dueño y el grupo dueño pueden leer , escribir y executar y los demas usuarios solo pueden leerlo.
+
+Ahora un parate , tenemos que tener en cuenta que los permisos `rwx` de un archivo no son los mismos que los de un directorio.Veamos los permisos de los archivos.
+
+**Permisos de los archivos** 
+
+| Permiso           | Descripcion                                                  |
+| ----------------- | ------------------------------------------------------------ |
+| r < Lectura:      | permite, fundamentalmente, visualizar el contenido del archivo. |
+| w**<** Escritura: | permite modificar el contenido del archivo.                  |
+| x**<** Ejecución: | permite ejecutar el archivo como si de un programa ejecutable se tratase. |
+
+En el caso de los directorios , dificilmente se entienda los permisos r y x separados.
+
+Read y Execute (r y x) Son nesesarios para que un usuario pueda "examinar" ese directorio , ver lo que tiene y navegar por el . El permiso Write(w) significa que el usuario puede colocar nuevos archivos o directorios dentro y tambien borrarlos.
+
+Veamoslos:
+
+**Permisos para directorios**
+
+| Permiso          | Descripcion                                                  |
+| ---------------- | ------------------------------------------------------------ |
+| r **<** Lectura: | Permite saber qué archivos y directorios contiene el directorio que tiene este permiso. |
+| w**<**Escritura: | Permite crear archivos en el directorio, bien sean archivos ordinarios o nuevos directorios. Se pueden borrar directorios, copiar archivos en el directorio, mover, cambiar el nombre, etc. |
+| x**<**Ejecución: | Permite situarse sobre el directorio para poder examinar su contenido(ls), copiar archivos de o hacia él. Si además se dispone de los permisos de escritura y lectura, se podrán realizar todas las operaciones posibles sobre archivos y directorios. |
+
+
+
+Lo mas comun es que los directorios deben ser "examinados" por todos los usuarios por lo que se les da permisos r-x en el tercer grupo. Pero con estos permisos no se puede colocar nada dentro , pero si podran hacerlo en un nivel inferior que si tengan permisos.
+
+Pongamos un ejemplo:
+
+Un usuario tiene acceso rwx a un directorio llamado /inferior que esta contenido en otro directorio llamado /superior, el problema es que si este usuario no tiene permisos r-x en el directorio /superior nunca podra acceder al directorio /inferior , para poder acceder minimamente al directorio /superior y luego entrar al directorio /inferior que este contiene debe pooser permisos r-x .Esto es logico , como va a poder escribir un usuario en un directorio si no puede llegar a el?.
+
+## chmod
+
+Para cambiar los permisos de  un fichero se utiliza el comando `chmod` 
+
+La opcion -R  es opcional y cumple la misma funcion que en chowm.
+
+`Hay dos formas de cambiar los permisos , la octal y la ....`
+
+A mi gusto prefiero la ... que te la enseñare ahora , pero descuida tambien te enseñare la otra forma.
+
+Primero veamos como el comando 
+
+```bash
+chmod ABC elemento
+```
+
+Donde A es u(usuario), g (grupo) o o(todos), cuando es `o` se puede omitir.
+
+Donde B es +(para agregar) o - (para quitar).
+
+Donde C es r(lectura) , w (escritura) y x (ejecucion)
+
+**Veamoslo con un ejemplo:**
+
+Tengo el archivo 
+
+```bash
+-rw-rw-r--  1 cisco cisco    26023 jun  7 16:36 reporte1
+```
+
+y quiero agregarle el permiso x y quitarle w al dueño,hacemos:
+
+```bash
+chmod u-w+x reporte1
+```
+
+Quiero quitarle  los permisos r y w al grupo dueño
+
+```bash
+chmod g-rw reporte1
+```
+
+Elimino  el permiso de ejecución para grupo y otros.
+
+```bash
+chmod go-x reporte1
+```
+
+Al usuario se le eliminan lectura y escritura, al grupo se le agrega lectura y otros se le agrega ejecución.
+
+```bash
+chmod  u-rw,g+w,o+x reporte1
+```
+
+Por ultimo quiero darle todos los permisos a todos ( no recomendado)
+
+```bash
+chmod +wrx reporte1
+```
+
+Por ultimo la forma octal 
+
+
+
+La representación octal de chmod es muy sencilla
+
+*Lectura* tiene el valor de *4*
+*Escritura* tiene el valor de *2*
+*Ejecución* tiene el valor de *1*
+
+Entonces:
+
+```scala
+x-----x-----x-----------------------------------x
+| rwx |  7  | Lectura, escritura y ejecución    |
+| rw- |  6  | Lectura, escritura                |
+| r-x |  5  | Lectura y ejecución               |
+| r-- |  4  | Lectura                           |
+| -wx |  3  | Escritura y ejecución             |
+| -w- |  2  | Escritura                         |
+| --x |  1  | Ejecución             			|
+| --- |  0  | Sin permisos          			|
+x-----x-----x-----------------------------------x
+```
+
+```java
+x------------------------x-----------x
+|chmod u=rwx,g=rwx,o=rx  | chmod 775 | 
+|chmod u=rwx,g=rx,o=     | chmod 760 |
+|chmod u=rw,g=r,o=r      | chmod 644 |
+|chmod u=rw,g=r,o=       | chmod 640 |
+|chmod u=rw,go=          | chmod 600 |
+|chmod u=rwx,go=         | chmod 700 |
+x------------------------x-----------x
+```
+
+# COMANDO SU
